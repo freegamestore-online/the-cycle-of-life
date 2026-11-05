@@ -1,5 +1,5 @@
 import kaplay, { KAPLAYCtx } from "kaplay";
-import { SEASONS, OUTFITS, LIFE_STAGES, randomSeason, buildWardrobe, stageForRoom } from "./outfits";
+import { SEASONS, randomSeason, buildWardrobe, stageForRoom } from "./outfits";
 import type { Season, Outfit } from "./outfits";
 
 const VW = 480;
@@ -206,7 +206,6 @@ export function startGame(
   // ── SCENE: walk (character walks into the new room) ───────────────────────
   k.scene("walk", (state: GameState, _dir: string) => {
     const season = randomSeason();
-    const si = SEASONS[season];
 
     drawSky(k, season);
     drawFloor(k, season);
@@ -405,7 +404,6 @@ export function startGame(
   k.scene("walkOut", (state: GameState, outfit: Outfit) => {
     const season = randomSeason();
     // Use the CURRENT room's season for this walk-out visual
-    const si = SEASONS[season];
 
     drawSky(k, season);
     drawFloor(k, season);

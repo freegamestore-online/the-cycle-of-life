@@ -69,20 +69,20 @@ function shuffle<T>(arr: T[]): T[] {
   const a = arr.slice();
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
+    [a[i], a[j]] = [a[j]!, a[i]!];
   }
   return a;
 }
 
 export function randomSeason(): Season {
   const all: Season[] = ["summer", "winter", "autumn", "spring"];
-  return all[Math.floor(Math.random() * all.length)];
+  return all[Math.floor(Math.random() * all.length)]!;
 }
 
 /** Build a round's wardrobe: one CORRECT outfit for the season + 3 from other
  *  seasons, shuffled. */
 export function buildWardrobe(season: Season): Outfit[] {
-  const correct = shuffle(OUTFITS.filter((o) => o.season === season))[0];
+  const correct = shuffle(OUTFITS.filter((o) => o.season === season))[0]!;
   const wrong = shuffle(OUTFITS.filter((o) => o.season !== season)).slice(0, 3);
   return shuffle([correct, ...wrong]);
 }
@@ -104,7 +104,7 @@ export const LIFE_STAGES: LifeStage[] = [
 ];
 
 export function stageForRoom(room: number): LifeStage {
-  let s = LIFE_STAGES[0];
+  let s = LIFE_STAGES[0]!;
   for (const st of LIFE_STAGES) if (room >= st.fromRoom) s = st;
   return s;
 }
